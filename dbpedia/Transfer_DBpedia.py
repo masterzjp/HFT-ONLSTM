@@ -14,10 +14,10 @@ batch_size = 64
 embedding_dims = 300
 epochs = 100
 
-pretrained_w2v, _, _ = pl.load(open(r'D:\赵鲸朋\pycharmModel0905\pycharmModel0905\htc-github\data\emb_matrix_glove_300', 'rb'))
+pretrained_w2v, _, _ = pl.load(open(r'D:\E1106\pycharmModel0905\pycharmModel0905\htc-github\data\emb_matrix_glove_300', 'rb'))
 ################################################################
 print('Loading data...')
-x,y1,y2,y3,y1_pad,y2_pad,y3_pad = pl.load(open(r'D:\赵鲸朋\pycharmModel0905\pycharmModel0905\htc-github\data\DBpedia\DBP_txt_vector300dim_y1y2y3_10dim_zjp','rb'))
+x,y1,y2,y3,y1_pad,y2_pad,y3_pad = pl.load(open(r'D:\E1106\pycharmModel0905\pycharmModel0905\htc-github\data\DBpedia\DBP_txt_vector300dim_y1y2y3_10dim_zjp','rb'))
 x_train,x_test,y1_train,y1_test = train_test_split( x, y1, test_size=0.2, random_state=42)
 
 print('Build model...')
@@ -25,7 +25,7 @@ model = TextONLSTM(maxlen, max_features, embedding_dims, pretrained_w2v).get_mod
 model.compile('adam', 'categorical_crossentropy', metrics=['accuracy'])
 model.summary()
 print('Train...')
-fileweights = r"D:\赵鲸朋\pycharmModel0905\pycharmModel0905\htc-github\dbpedia\output\weights\Ay1contentbest_weights.h5"
+fileweights = r"D:\E1106\pycharmModel0905\pycharmModel0905\htc-github\dbpedia\output\weights\Ay1contentbest_weights.h5"
 checkpoint = ModelCheckpoint(fileweights, monitor='val_acc', verbose=1, save_best_only=True, mode='auto')
 early_stopping = EarlyStopping(monitor='val_acc', patience=5, mode='max')
 
@@ -44,14 +44,14 @@ predict = np.argmax(predict, axis=1)
 print(predict)
 print(np.shape(predict))
 # 存储预测的label id
-pl.dump(predict, open('D:\赵鲸朋\pycharmModel0905\pycharmModel0905\htc-github\dbpedia\output\predictlabel\DBpedia_layer1_predict1_2', 'wb'))
+pl.dump(predict, open('D:\E1106\pycharmModel0905\pycharmModel0905\htc-github\dbpedia\output\predictlabel\DBpedia_layer1_predict1_2', 'wb'))
 
 pretrained_w2v, word_to_id, _ = pl.load(
-    open(r'D:\赵鲸朋\pycharmModel0905\pycharmModel0905\PycharmProjects\Wos-Metadata2txt\data\wos\emb_matrix_glove_300', 'rb'))
+    open(r'D:\E1106\pycharmModel0905\pycharmModel0905\PycharmProjects\Wos-Metadata2txt\data\wos\emb_matrix_glove_300', 'rb'))
 y1 = ['agent', 'device', 'event', 'place', 'species', 'sports season', 'topical concept', 'unit of work', 'work']
 # label1_id = [1,0,1,2,0,3,2,5,4,6,6]
 y1_id_pad = []
-label1_id =pl.load(open(r'D:\赵鲸朋\pycharmModel0905\pycharmModel0905\htc-github\dbpedia\output\predictlabel\DBpedia_layer1_predict1_2','rb'))
+label1_id =pl.load(open(r'D:\E1106\pycharmModel0905\pycharmModel0905\htc-github\dbpedia\output\predictlabel\DBpedia_layer1_predict1_2','rb'))
 
 for i in label1_id:
     y1_id_pad.append([word_to_id[x] for x in y1[i].split(' ') if x in word_to_id])
@@ -62,6 +62,6 @@ print(y1_id_pad[:10])
 y1_length = 3
 y1_pad = kr.preprocessing.sequence.pad_sequences(y1_id_pad, y1_length, padding='post', truncating='post')
 # 存储经过embedding后的label
-with open(r'D:\赵鲸朋\pycharmModel0905\pycharmModel0905\htc-github\dbpedia\output\predictlabel\DB_pre_y1_id_pad_2', 'wb') as f:
+with open(r'D:\E1106\pycharmModel0905\pycharmModel0905\htc-github\dbpedia\output\predictlabel\DB_pre_y1_id_pad_2', 'wb') as f:
     pl.dump(y1_pad, f)
 #######################################
