@@ -12,9 +12,11 @@ max_features = 89098
 batch_size = 64
 embedding_dims = 300
 epochs = 100
+#  The path of embedding matrix
 pretrained_w2v, _, _ = pl.load(open(r'D:\E1106\pycharmModel0905\pycharmModel0905\htc-github\data\emb_matrix_glove_300', 'rb'))
 #######################################################################################################################
 print('Loading data...')
+#  Path to the processed dataset
 x,y1,y2,y1_pad,y2_pad = pl.load(open(r'D:\E1106\pycharmModel0905\pycharmModel0905\htc-github\data\wos\WOSDATA_txt_vector500dimsy1y2_10dim_zjp','rb'))
 pre_y1_pad = pl.load(open(r'D:\E1106\pycharmModel0905\pycharmModel0905\htc-github\wos\output\predictlabel\py1_id_pad_2','rb'))#wos第一层目录忘记改成3了，把3的放在5里面了
 x_train, x_test, y2_train, y2_test = train_test_split( x, y2, test_size=0.2, random_state=42)

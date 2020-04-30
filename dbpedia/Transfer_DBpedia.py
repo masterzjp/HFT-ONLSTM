@@ -13,10 +13,11 @@ max_features = 89098
 batch_size = 64
 embedding_dims = 300
 epochs = 100
-
+#  The path of embedding matrix
 pretrained_w2v, _, _ = pl.load(open(r'D:\E1106\pycharmModel0905\pycharmModel0905\htc-github\data\emb_matrix_glove_300', 'rb'))
 ################################################################
 print('Loading data...')
+#  Path to the processed dataset
 x,y1,y2,y3,y1_pad,y2_pad,y3_pad = pl.load(open(r'D:\E1106\pycharmModel0905\pycharmModel0905\htc-github\data\DBpedia\DBP_txt_vector300dim_y1y2y3_10dim_zjp','rb'))
 x_train,x_test,y1_train,y1_test = train_test_split( x, y1, test_size=0.2, random_state=42)
 

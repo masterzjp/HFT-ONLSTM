@@ -16,10 +16,11 @@ embedding_dims = 300
 epochs = 100
 
 start_time =time.time()
+#  The path of embedding matrix
 pretrained_w2v, _, _ = pl.load(open(r'D:\E1106\pycharmModel0905\pycharmModel0905\htc-github\data\emb_matrix_glove_300', 'rb'))
 ################################################################
 print('Loading data...')
-
+#  Path to the processed dataset
 x,y1,y2,y3,y1_pad,y2_pad,y3_pad = pl.load(open(r'D:\E1106\pycharmModel0905\pycharmModel0905\htc-github\data\DBpedia\DBP_txt_vector300dim_y1y2y3_10dim_zjp','rb'))
 pre_y1_pad = pl.load(open(r'D:\E1106\pycharmModel0905\pycharmModel0905\htc-github\dbpedia\output\predictlabel\DB_pre_y1_id_pad_2','rb'))
 print(pre_y1_pad[:3])
