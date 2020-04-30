@@ -72,7 +72,7 @@ print(np.shape(predict))
 pl.dump(predict, open('D:\E1106\pycharmModel0905\pycharmModel0905\htc-github\dbpedia\output\predictlabel\DBpedia_layer2_predict2_2', 'wb'))
 
 pretrained_w2v, word_to_id, _ = pl.load(
-    open(r'D:\赵鲸朋\pycharmModel0905\pycharmModel0905\PycharmProjects\Wos-Metadata2txt\data\wos\emb_matrix_glove_300', 'rb'))
+    open(r'D:\E1106\pycharmModel0905\pycharmModel0905\PycharmProjects\Wos-Metadata2txt\data\wos\emb_matrix_glove_300', 'rb'))
 y2 = ['actor', 'amusement park attraction', 'animal', 'artist', 'athlete', 'body of water', 'boxer', 'british royalty',
       'broadcaster', 'building', 'cartoon', 'celestial body', 'cleric', 'clerical administrative region', 'coach', 'comic',
       'comics character', 'company', 'database', 'educational institution', 'engine', 'eukaryote', 'fictional character',
